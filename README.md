@@ -1,6 +1,6 @@
-# Proyecto de automatización de pruebas con Playwright-Cucumber 
+# Proyecto de automatización de pruebas con Playwright
 
-Este proyecto sencillo de automatización de QA utiliza Playwright (assertions y browsers aislados) y Cucumber como runner de pruebas para ejecutar una suite de pruebas a la web http://sauce-demo.com. Está desarrollado en TypeScript para una mejor experiencia de desarrollo. 
+Este proyecto sencillo de automatización de QA utiliza Playwright para ejecutar una suite de pruebas a la web http://sauce-demo.com. Está desarrollado en TypeScript para una mejor experiencia de desarrollo. 
 
 ## ¿Qué es Playwright?
 
@@ -40,22 +40,13 @@ Puedes descargar nvm (gestor de versiones de node) en este repositorio: https://
 
 Para ejecutar todas las pruebas:
 
-```bash
-npm run test:all
-```
+
 
 Para ejecutar pruebas específicas:
 
-```bash
-npm test features/<nombrefichero.feature>
-```
+
 
 ## Reportes
 
-Los reportes se generan automáticamente en la carpeta `reports/` al finalizar la ejecución de las pruebas. Contiene un reporte HTML de Cucumber y capturas de pantalla de escenarios fallidos (si los hubiere).
-
 Para ver el reporte localmente:
 
-```bash
-npm run report:local
-```
