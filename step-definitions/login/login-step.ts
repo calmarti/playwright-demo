@@ -1,6 +1,4 @@
-import { Given, When , Then } from '@cucumber/cucumber';
 import { LoginPage } from '../../page-objects/login-page';
-import { CustomWorld } from '../../setup/world';
 
 
 Given('I am on the login screen', async function(this: CustomWorld) {
