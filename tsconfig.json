@@ -1,23 +1,22 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "target": "es2020",             // Modern JS for modern Playwright/Node
-    "module": "CommonJS",           // Keeps your existing module system
-    "moduleResolution": "node",     // How TS finds your packages
-    "lib": ["ESNext", "DOM"],       // Adds support for modern APIs
+    "target": "ESNext",             // Node 22 supports the latest features
+    "module": "NodeNext",           // Best for Node 22 ESM/CJS compatibility
+    "moduleResolution": "NodeNext", // Explicitly fixes the deprecation warning
+    "lib": ["ESNext"],              // Cleaned up (removed DOM)
     
-    /* Strictness - The "Upgrade" part */
-    "strict": true,                 // Turns on all type-checking (recommended)
-    "noImplicitAny": true,         // Set to true later once you are comfortable
+    /* Strictness */
+    "strict": true,                 // Includes noImplicitAny and more
     
     /* Compatibility */
-    "esModuleInterop": true,        // Allows easy imports (import fs from 'fs')
-    "skipLibCheck": true,           // Faster builds; skips checking node_modules
+    "esModuleInterop": true,
+    "skipLibCheck": true, 
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,      // Highly recommended for reading test data/configs
 
     /* Paths */
-    "baseUrl": ".",
-    "types": ["node", "@playwright/test", "@cucumber/cucumber"] 
+    "types": ["node", "@playwright/test"] 
   },
   "include": [
     "features/**/*.ts", 
