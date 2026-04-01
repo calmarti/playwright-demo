@@ -1,18 +1,18 @@
 export const users = {
 
     validUser: {
-        username: 'standard_user',
-        password: 'secret_sauce'
+        username: 'john',
+        password: 'demo'
+    },
+
+    invalidPasswordUser: {
+        username: 'john',
+        password: 'wrong_password'
     },
 
     invalidUsernameUser: {
         username: 'wrong_username',
-        password: 'wrong_password'
-    },
-
-    invalidPasswordUser: {
-        username: 'wrong_username',
-        password: 'wrong_password'
+        password: 'demo'
     },
 
     invalidCredentialsUser: {
