@@ -19,10 +19,7 @@
     "types": ["node", "@playwright/test"] 
   },
   "include": [
-    "features/**/*.ts", 
-    "step-definitions/**/*.ts", 
-    "setup/**/*.ts",
-    "page-objects/**/*.ts"
+    "**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
