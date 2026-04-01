@@ -1,53 +1,47 @@
-import { expect, Page, Locator }  from '@playwright/test';
+import { expect, Page, Locator } from '@playwright/test';
 
 export class LoginPage {
   readonly page: Page;
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
-  readonly submit_button: Locator;
-  readonly home_unique_locator: Locator;
-  readonly error: Locator;
+  readonly submitButton: Locator;
+  readonly succesfulLoginLocator: Locator;
+  readonly failedLoginHeadingLocator: Locator;
+  readonly failedLoginMessage: Locator;
   
+
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.locator("#user-name");
-    this.passwordInput = page.locator("#password");
-    this.submit_button = page.locator("#login-button");
-    this.home_unique_locator = page.locator("#shopping_cart_container");
-    this.error = page.locator("[data-test=\"error\"]");
-  } 
+    this.usernameInput = page.locator('input[name="username"]');
+    this.passwordInput = page.locator('input[name="password"]');
+    this.submitButton = page.getByRole('button', { name: 'Log In' });
+    this.succesfulLoginLocator = page.getByText(/Welcome/i);
+    this.failedLoginHeadingLocator = page.getByRole('heading', { name: /Error/i})
+    this.failedLoginMessage = page.getByText(/The username and password could not be verified\./i);
+  }
+
   async navigateToLoginPage() {
     await this.page.goto('/');
   }
 
-/*   async verifyLoginPageIsDisplayed() {
-    await expect(this.page).toHaveURL(/.*saucedemo\.com\/?/);
-    const title = await this.page.title();
-    await expect(title).toMatch(/Swag Labs/i);
-  } */
-
-  async fillLoginForm(username:string, password:string) {
+  async fillLoginForm(username: string, password: string) {
     await expect(this.usernameInput).toBeVisible();
     await this.usernameInput.fill(username);
     await expect(this.usernameInput).toHaveValue(username);
+
     await expect(this.passwordInput).toBeVisible();
     await this.passwordInput.fill(password);
-    await expect(this.passwordInput).toHaveValue(password);   
-  } 
-  
-  async clickSubmitButton() {
-    await expect(this.submit_button).toBeVisible();
-    await this.submit_button.click();
+    await expect(this.passwordInput).toHaveValue(password);
   }
 
-/*   async verifySuccesfulLogin() {
-    await expect(this.page).toHaveURL(/.*saucedemo\.com\/inventory\.html\/?$/);
-    await expect(this.home_unique_selector).toBeVisible();
+  async clickSubmitButton() {
+    await expect(this.submitButton).toBeVisible();
+    await this.submitButton.click();
   }
- */
-  async verifyErrorMsg(errorMsg:string) {
-    await expect(this.error).toBeVisible();
-    await expect(this.error).toHaveText(errorMsg);
-  }
+
+/*   async verifyErrorMsg(errorMsg: string) {
+    await expect(this.loginError).toBeVisible();
+    await expect(this.loginError).toHaveText(errorMsg);
+  } */
 
 }
