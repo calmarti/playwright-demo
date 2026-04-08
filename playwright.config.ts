@@ -12,6 +12,11 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+
+  //Global setup provides an authenticated context for each test
+  globalSetup: require.resolve('./setup/global.setup'),  
+  
+
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
@@ -27,6 +32,8 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: 'https://www.saucedemo.com/',
+    //Set path to storageState json file
+    storageState: './setup/auth.json',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -34,7 +41,7 @@ export default defineConfig({
     launchOptions: {   
       slowMo: 500,
     },
-    testIdAttribute: 'data-test'
+    testIdAttribute: 'data-test',
   },
 
   /* Configure projects for major browsers */
