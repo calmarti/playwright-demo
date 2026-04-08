@@ -14,6 +14,5 @@ setup('authentication', async ({ page }) => {
     await page.getByPlaceholder('Password').fill(validUser.password);
     await page.locator('[data-test="login-button"]').click();   
     await expect(page).toHaveURL(/inventory\.html$/i);
-
     await page.context().storageState({ path: authJson });
 })
