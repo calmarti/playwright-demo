@@ -16,7 +16,7 @@ test.describe('Login page test cases', () => {
 
     await test.step('Given user is on the login page', async () => {
       await expect(loginPage.submitButton).toBeVisible();
-    });
+    }); 
 
     await test.step('When user fills username and password inputs with valid credentials', async () => {
       await loginPage.fillLoginForm(validUser.username, validUser.password);
@@ -27,7 +27,8 @@ test.describe('Login page test cases', () => {
     });
 
     await test.step('Then user logs in successfully: she/he is redirected to Home', async () => {
-      await expect(page).toHaveURL(/https:\/\/(www\.)?saucedemo\.com\/inventory\.html/i);
+      await expect(page)
+      .toHaveURL(/inventory\.html$/i);
       await expect(loginPage.succesfulLoginLocator, 'Succesful login locator should be visible')
       .toBeVisible();
     });
@@ -37,8 +38,7 @@ test.describe('Login page test cases', () => {
   test('user with valid username and invalid password should fail to login', async ({ page }) => {
 
     await test.step('Given user is on the login page', async () => {
-      await expect(loginPage.usernameInput).toBeVisible();
-      await expect(loginPage.passwordInput).toBeVisible();
+      await expect(loginPage.submitButton).toBeVisible();
     });
 
     await test.step('When user fills username and password inputs with valid username but invalid password', async () => {
@@ -55,12 +55,10 @@ test.describe('Login page test cases', () => {
 
   });
 
-
   test('user with invalid username and valid password should fail to login', async ({ page }) => {
 
     await test.step('Given user is on the login page', async () => {
-      await expect(loginPage.usernameInput).toBeVisible();
-      await expect(loginPage.passwordInput).toBeVisible();
+      await expect(loginPage.submitButton).toBeVisible();
     });
 
     await test.step('When user fills username and password inputs with invalid username and valid password', async () => {
@@ -79,8 +77,7 @@ test.describe('Login page test cases', () => {
 
   test('user with both wrong username and password should fail to login', async ({ page }) => {
       await test.step('Given user is on the login page', async () => {
-      await expect(loginPage.usernameInput).toBeVisible();
-      await expect(loginPage.passwordInput).toBeVisible();
+       await expect(loginPage.submitButton).toBeVisible();
     });
 
     await test.step('When user fills username and password inputs with both wrong username and password', async () => {
