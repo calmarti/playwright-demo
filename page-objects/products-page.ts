@@ -25,13 +25,13 @@ export class ProductsPage {
 
     async sortProductsByNameAsc() {
         //arrange: sort item names in JS before actual sort (expected array)
-        let expectedSortedItemNameList: string[] = await this.itemLocator.allTextContents();
-        expectedSortedItemNameList = expectedSortedItemNameList
+        let expectedSortedItemNamesList: string[] = await this.itemLocator.allTextContents();
+        expectedSortedItemNamesList = expectedSortedItemNamesList
         .sort((a,b) => a.localeCompare(b, 'en'));
         //act: sort by name (asc) in actual page (actual array)
         await this.sortProductsLocator.selectOption({ value: 'az'});     
-        const sortedItemNameList: string[] = await this.itemLocator.allTextContents(); 
-        return [expectedSortedItemNameList, sortedItemNameList];
+        const sortedItemNamesList: string[] = await this.itemLocator.allTextContents(); 
+        return [expectedSortedItemNamesList, sortedItemNamesList];
     };
 };
 

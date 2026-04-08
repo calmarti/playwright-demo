@@ -5,7 +5,7 @@ import path from 'node:path';
 const authJson = path.join(__dirname, '../setup/auth.json'); 
 
 //for each test: create a new browser context with a new storage state
-test.use({ storageState: authJson })
+//test.use({ storageState: authJson })
 
 test.describe('Products page tests cases', () => {
     let productsPage: ProductsPage;
@@ -18,7 +18,8 @@ test.describe('Products page tests cases', () => {
     
     test('Sort products by name in ascending order', async ({ page }) => {
         //arrange and act
-        const [expectedSortedItemNameList, sortedItemNameList] = await productsPage.sortProductsByNameAsc();
+        const [expectedSortedItemNameList, sortedItemNameList] = 
+            await productsPage.sortProductsByNameAsc();
         //assert: compare sorted array in JS vs. actual sorted array
         expect(sortedItemNameList).toEqual(expectedSortedItemNameList);
     });
@@ -27,7 +28,7 @@ test.describe('Products page tests cases', () => {
         
     });
 
-    test.skip('View items detail', async ({ page }) => {
+    test.skip('View item details screen', async ({ page }) => {
         
     })
     
