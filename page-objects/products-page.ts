@@ -1,16 +1,13 @@
-import { Page, Locator, expect } from '@playwright/test';
-import { Item, Order } from '../types';
-
+import { Page, Locator } from '@playwright/test';
+import { By,  Item, Order } from '../types';
 
 export class ProductsPage {
     readonly page: Page;
     readonly productsHeadingLocator: Locator;
     readonly itemContainerLocatorList: Locator;
-    //TODO: remove itemNameLocatorList and use itemContainerList (if possible) 
     readonly itemNameLocatorList: Locator;
-    readonly sortItemsLocator: Locator;
-    //readonly addItemToCartLocator: Locator;
-    //readonly removeItemFromCartLocator: Locator;
+    readonly itemPriceLocatorList: Locator;
+    readonly sortItemsLocator: Locator; 
     readonly shoppingCartLocator: Locator;
 
     constructor(page: Page){
@@ -18,6 +15,7 @@ export class ProductsPage {
         this.productsHeadingLocator = page.getByText('Products');
         this.itemContainerLocatorList = page.getByTestId('inventory-item');
         this.itemNameLocatorList = page.getByTestId('inventory-item-name')
+        this.itemPriceLocatorList = page.getByTestId('inventory-item-price');
         this.sortItemsLocator = page.getByTestId('product-sort-container');
         this.shoppingCartLocator = page.getByTestId('shopping-cart-link');
     }
@@ -26,19 +24,24 @@ export class ProductsPage {
         await this.page.goto('/inventory.html');
     }
 
-    async sortItemsByName(order: Order) {
-        //act: sort by name in actual page (actual array) by given order
+    async sortItemsBy(by: By, order: Order) {
+        if (by === 'name'){
+        //act: sort by name in UI (actual array) by given order
         const orderValue = (order === 'desc') ? 'za' : 'az';  
         await this.sortItemsLocator.selectOption({ value: orderValue });
         const sortedItemNamesList: string[] = await this.itemNameLocatorList.allTextContents();
         return sortedItemNamesList;
+        }
+        else {
+        //act: sort by price in UI (actual array) by given order
+        const orderValue = (order === 'desc') ? 'hilo' : 'lohi'; 
+        await this.sortItemsLocator.selectOption({ value: orderValue });
+        const sortedItemPricesList: string[] = await this.itemPriceLocatorList.allTextContents();
+        return sortedItemPricesList;
+        }
     }
 
-    async sortItemsByPrice(){
-
-    }
-
-    async showItemDetailsView(item: Item){
+     async goToItemDetailsView(item: Item){
         await this.itemNameLocatorList
                 .filter({ hasText: item.name, visible: true})
                 .click();
@@ -46,17 +49,24 @@ export class ProductsPage {
     }
 
     async addItemToCart(item: Item){
-        const addButton = this.itemContainerLocatorList
-        .filter({ hasText: item.name, visible: true })
-        .getByRole('button', { name: /Add to cart/ })
-        await addButton.click();        
+        const addButton = this.getItemButton(item, 'Add to cart');
+        await addButton.click();           
     }
     
     async removeFromCart(item: Item){
-        const removeButton = this.itemContainerLocatorList
-        .filter({ hasText: item.name, visible: true })
-        .getByRole('button', { name: /Remove/ })
+        const removeButton = this.getItemButton(item, 'Remove'); 
         await removeButton.click();  
+    }
+    
+    getItemButton(item: Item, buttonName?: string): Locator {
+        return this.itemContainerLocatorList
+            .filter({ hasText: item.name, visible: true })
+            .getByRole('button', { name: buttonName }); 
+    } 
+
+    async navigateToCartPage(){ 
+        await this.shoppingCartLocator.click();
+        await this.page.waitForURL(/cart\.html/); 
     }
 }; 
 
