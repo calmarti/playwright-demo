@@ -1,12 +1,11 @@
 {
-  "name": "playwright-cucumber-e2e-boilerplate",
+  "name": "playwright-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:all": "rm -rf reports && mkdir reports && cucumber-js features/**/*.feature --format html:reports/cucumber_report.html --format summary --format @cucumber/pretty-formatter --publish --publish-quiet",
-    "test": "rm -rf reports && mkdir reports && cucumber-js --format html:reports/cucumber_report.html --format summary --format @cucumber/pretty-formatter --publish --publish-quiet",
-    "report:local": "start reports/local_report.html"
+    "test": "npx playwright test --trace=on",
+    "test:headless": "npx playwright test"
   },
   "keywords": [],
   "author": "",
