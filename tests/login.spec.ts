@@ -98,7 +98,7 @@ test.describe('Login page test cases', () => {
     });
   });
 
-  test.only('Valid user should be able to log out', async ({ page }) => {
+  test('Valid user should be able to log out', async ({ page }) => {
     //arrange: go to login page and perform a succesful login
     await expect(loginPage.submitButton).toBeVisible();
     await loginPage.fillLoginForm(validUser.username, validUser.password);
