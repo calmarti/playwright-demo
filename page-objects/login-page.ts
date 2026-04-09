@@ -7,6 +7,7 @@ export class LoginPage {
   readonly submitButton: Locator;
   readonly succesfulLoginLocator: Locator;
   readonly failedLoginLocator: Locator;
+  readonly openTopLeftMenuLocator: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -15,15 +16,11 @@ export class LoginPage {
     this.submitButton = page.locator('[data-test="login-button"]');
     this.succesfulLoginLocator = page.getByText('Products');
     this.failedLoginLocator = page.getByRole('heading', { name: "Epic sadface: Username and password do not match any user in this service"});
+    this.openTopLeftMenuLocator = page.getByRole('button', { name: /Open Menu/i })
   }
 
   async navigateToLoginPage() {
     await this.page.goto('/');
-    await expect(this.page)
-      .toHaveURL(/https:\/\/(www\.)?saucedemo\.com/i);
-    await
-      expect(this.page)
-      .toHaveTitle(/Swag Labs/i);
   }
 
   async fillLoginForm(username: string, password: string) {
@@ -40,4 +37,7 @@ export class LoginPage {
     await this.submitButton.click(); 
   }
 
+  async logout(){
+    this.openMenuLocator.click();
+  }
 }

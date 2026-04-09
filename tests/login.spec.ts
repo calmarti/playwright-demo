@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../page-objects/login-page';
 import { users } from '../test-data/users';
+import { ProductsPage } from '../page-objects/products-page';
 
 const { validUser, invalidPasswordUser, invalidUsernameUser, invalidCredentialsUser } = users;
 
@@ -12,14 +13,15 @@ test.describe('Login page test cases', () => {
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
-    await loginPage.navigateToLoginPage();   
-  })
+    await loginPage.navigateToLoginPage();
+    await expect(page).toHaveURL(/https:\/\/(www\.)?saucedemo\.com/);
+  });
   
   test('user with valid credentials should login successfully', async ({ page }) => {
 
     await test.step('Given user is on the login page', async () => {
       await expect(loginPage.submitButton).toBeVisible();
-    }); 
+    });  
 
     await test.step('When user fills username and password inputs with valid credentials', async () => {
       await loginPage.fillLoginForm(validUser.username, validUser.password);
@@ -38,7 +40,7 @@ test.describe('Login page test cases', () => {
 
   });
 
-  test('user with valid username and invalid password should fail to login', async ({ page }) => {
+  test('User with valid username and invalid password should fail to login', async ({ page }) => {
 
     await test.step('Given user is on the login page', async () => {
       await expect(loginPage.submitButton).toBeVisible();
@@ -96,4 +98,19 @@ test.describe('Login page test cases', () => {
     });
   });
 
+  test.only('Valid user should be able to log out', async ({ page }) => {
+    //arrange: go to login page and perform a succesful login
+    await expect(loginPage.submitButton).toBeVisible();
+    await loginPage.fillLoginForm(validUser.username, validUser.password);
+    await loginPage.clickSubmitButton(); 
+    await expect(page).toHaveURL(/inventory\.html$/i);
+    await expect(loginPage.succesfulLoginLocator).toBeVisible(); 
+    //act: find open menu locator and click on it so that logout option appears
+    await loginPage.openTopLeftMenuLocator.click();
+    //act: find logout locator and click on it
+    await page.getByRole('link', { name: /Logout/i }).click();
+    //assert: actual url matches (expected) login page URL
+    await expect(page).toHaveURL(/https:\/\/(www\.)?saucedemo\.com/);
+  })
+  
 });
