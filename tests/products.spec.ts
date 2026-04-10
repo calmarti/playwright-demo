@@ -80,11 +80,11 @@ test.describe('Products page tests cases', () => {
         await productsPage.addItemToCart(testItem2);
         await productsPage.addItemToCart(testItem3);
         //assert: Expected number of items in cart icon: 3 
-        expect(productsPage.shoppingCartLocator).toHaveText('3');
+        await expect(productsPage.shoppingCartLocator).toHaveText('3');
         //act: click on cart icon to go to cart page
         await productsPage.navigateToCartPage();
         //assert: cart page has expected url
-        expect(page).toHaveURL((/cart\.html/)); 
+        await expect(page).toHaveURL((/cart\.html/)); 
     });       
     
 });
