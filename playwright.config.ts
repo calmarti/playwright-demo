@@ -16,7 +16,6 @@ export default defineConfig({
   //Global setup provides an authenticated context for each test
   globalSetup: require.resolve('./setup/global.setup'),  
   
-
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
