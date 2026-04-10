@@ -1,4 +1,4 @@
-# Sauce Demo Automation - Paywright, Typescript y CI con GitHub Actions
+# Suite de pruebas automatizadas E2E para "Sauce Demo" - Paywright - Typescript - GitHub Actions
 
 Este proyecto realiza la automatización de pruebas de extremo a extremo (E2E) para la web [SauceDemo](https://www.saucedemo.com/), utilizando **Playwright** como framework de pruebas y siguiendo el patrón de diseño **Page Object Model (POM)** para garantizar un código mantenible y escalable. 
 
@@ -37,8 +37,8 @@ Los tests de `login.spect.ts` excluyen de forma explícita la creación de un co
 ### 1. Requisitos
 Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 22 o superior).
  
-### 2. Clonar el repositorio e instalar dependencias
-
+### 2. Instalación
+ 
 ```bash
 # Instalar las dependencias del proyecto (package.json)
 
