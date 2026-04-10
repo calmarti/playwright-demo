@@ -11,6 +11,7 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
+    //TODO: add locator suffix where needed
     this.usernameInput = page.getByPlaceholder('Username');
     this.passwordInput = page.getByPlaceholder('Password');
     this.submitButton = page.locator('[data-test="login-button"]');

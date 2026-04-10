@@ -47,6 +47,7 @@ export class ProductsPage {
                 .click();
         await this.page.waitForURL(`**/inventory-item.html?id=${item.id}`);         
     }
+    
 
     async addItemToCart(item: Item){
         const addButton = this.getItemButton(item, 'Add to cart');

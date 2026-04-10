@@ -6,7 +6,7 @@ import { ProductsPage } from '../page-objects/products-page';
 const { validUser, invalidPasswordUser, invalidUsernameUser, invalidCredentialsUser } = users;
 
 //this overrides storageState set in global.setup.ts
-//test.use({ storageState: { cookies: [], origins: [] } });
+test.use({ storageState: { cookies: [], origins: [] } });
 
 test.describe('Login page test cases', () => {
   let loginPage: LoginPage; 

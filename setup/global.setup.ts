@@ -1,7 +1,7 @@
 import { chromium, FullConfig, expect } from "@playwright/test";
 import { users } from "../test-data/users";
 import path from "node:path";
-const { validUser } = users;
+const { validUser } = users; 
 
 const authJson = path.join(__dirname, 'auth.json');
 
@@ -16,6 +16,6 @@ export default async function globalSetup(config: FullConfig) {
     await page.click('[data-test="login-button"]');
     await expect(page).toHaveURL(/inventory\.html$/i);
 
-    //persist browser state (cookies / localStorage) 
+    //persist browser state (cookies)) 
     await page.context().storageState({ path: authJson });
 }
