@@ -1,4 +1,4 @@
-# Sauce Demo Automation con Playwright, Typescript e integración CI con GitHub Actions
+# Sauce Demo Automation - Paywright, Typescript y CI con GitHub Actions
 
 Este proyecto realiza la automatización de pruebas de extremo a extremo (E2E) para la web [SauceDemo](https://www.saucedemo.com/), utilizando **Playwright** como framework de pruebas y siguiendo el patrón de diseño **Page Object Model (POM)** para garantizar un código mantenible y escalable. 
 
