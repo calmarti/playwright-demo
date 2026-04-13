@@ -39,6 +39,6 @@ export class LoginPage {
   }
 
   async logout(){
-    this.openMenuLocator.click();
+    this.openTopLeftMenuLocator.click();
   }
 }

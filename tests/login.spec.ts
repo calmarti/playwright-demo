@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../page-objects/login-page';
 import { users } from '../test-data/users';
-import { ProductsPage } from '../page-objects/products-page';
 
 const { validUser, invalidPasswordUser, invalidUsernameUser, invalidCredentialsUser } = users;
 
@@ -9,6 +8,7 @@ const { validUser, invalidPasswordUser, invalidUsernameUser, invalidCredentialsU
 test.use({ storageState: { cookies: [], origins: [] } });
 
 test.describe('Login page test cases', () => {
+    
   let loginPage: LoginPage; 
 
   test.beforeEach(async ({ page }) => {
