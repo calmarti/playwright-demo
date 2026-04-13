@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test"
+import { Locator } from "@playwright/test"
 
 //this fixes firefox issue with 'click' action
 export async function executeActionOnElem(browserName: string, elem: Locator){
