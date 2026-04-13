@@ -17,7 +17,7 @@ export class LoginPage {
     this.submitButton = page.locator('[data-test="login-button"]');
     this.homeTopLeftMenu = page.getByRole('button', { name: /Open Menu/i })
     this.succesfulLoginLocator = page.getByTestId('title');
-    this.failedLoginLocator = page.getByRole('heading', { name: "Epic sadface: Username and password do not match any user in this service"});
+    this.failedLoginLocator = page.getByTestId('error');
     this.logoutLocator = page.getByRole('link', { name: /Logout/i });
   }
 
@@ -35,33 +35,18 @@ export class LoginPage {
     await expect(this.passwordInput, 'password input should be filled').toHaveValue(password);
   }
 
-  async clickSubmitButton(browserName: string) {
-      if (browserName === 'firefox') {
-    //await this.submitButton.click({ force: true });
-    await this.submitButton.focus();
-    await this.page.keyboard.press('Enter');
-  } else {
+  //IMPORTANT: This action logic was refactored into a executeActionOnElem in utils.ts 
+
+  /*   async clickSubmitButton() {
     await this.submitButton.click();
-  }}
+  } */
 
-  async openHomeTopLeftMenu(browserName:string){
-    if (browserName === 'firefox'){
-      await this.homeTopLeftMenu.focus();
-      await this.page.keyboard.press('Enter');
-    }
-    else{
-      await this.homeTopLeftMenu.click();
-    }
-
-  }
+/*   async openHomeTopLeftMenu(){
+    await this.homeTopLeftMenu.click();
+  } */
   
-  async getLogoutElemAndClick(browserName:string){
-     if (browserName === 'firefox'){
-      await this.logoutLocator.focus();
-      await this.page.keyboard.press('Enter');
-    }
-    else{
-      await this.logoutLocator.click();
-    }
-  }
+/*   async getLogoutElemAndClick(){
+    await this.logoutLocator.click();
+  } */
+
 }
