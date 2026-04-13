@@ -17,100 +17,66 @@ test.describe('Login page test cases', () => {
     await expect(page).toHaveURL(/https:\/\/(www\.)?saucedemo\.com/);
   });
   
-  test('user with valid credentials should login successfully', async ({ page }) => {
+  test('User with valid credentials should login successfully', async ({ page, browserName }) => {
+    //arrange: verify current page is login page
+    await expect(loginPage.submitButton).toBeVisible();
+    //act: fill inputs 
+    await loginPage.fillLoginForm(validUser.username, validUser.password);   
+    //act (click) + assert 
+    await loginPage.clickSubmitButton(browserName);
+    await expect(loginPage.succesfulLoginLocator).toBeVisible();    
+    await expect(page).toHaveURL(/inventory\.html$/i);  
+  });
 
-    await test.step('Given user is on the login page', async () => {
-      await expect(loginPage.submitButton).toBeVisible();
-    });  
-
-    await test.step('When user fills username and password inputs with valid credentials', async () => {
-      await loginPage.fillLoginForm(validUser.username, validUser.password);
-    });
-
-    await test.step('When user clicks on the submit button', async () => {
-      await loginPage.clickSubmitButton();  
-    });
-
-    await test.step('Then user logs in successfully: she/he is redirected to Home', async () => {
-      await expect(page)
-      .toHaveURL(/inventory\.html$/i);
-      await expect(loginPage.succesfulLoginLocator, 'Succesful login locator should be visible')
-      .toBeVisible();
-    });
+  test('User with valid username and invalid password should fail to login', async ({ browserName }) => {
+    //arrange: verify current page is login page
+    await expect(loginPage.submitButton).toBeVisible();
+    //act: fill inputs 
+    await loginPage.fillLoginForm(invalidPasswordUser.username, invalidPasswordUser.password);
+    //act (click) + assert 
+    await loginPage.clickSubmitButton(browserName);   
+    await expect(loginPage.failedLoginLocator).toBeVisible();  
 
   });
 
-  test('User with valid username and invalid password should fail to login', async ({ page }) => {
-
-    await test.step('Given user is on the login page', async () => {
-      await expect(loginPage.submitButton).toBeVisible();
-    });
-
-    await test.step('When user fills username and password inputs with valid username but invalid password', async () => {
-      await loginPage.fillLoginForm(invalidPasswordUser.username, invalidPasswordUser.password);
-    });
-
-    await test.step('When user clicks on the submit button', async () => {
-      await loginPage.clickSubmitButton();  
-    });
-
-    await test.step('Then login fails and an error message is shown' , async () => {
-      await expect(loginPage.failedLoginLocator).toBeVisible();     
-    });
+  test('User with invalid username and valid password should fail to login', async ({browserName}) => {
+    //arrange: verify current page is login page
+    await expect(loginPage.submitButton).toBeVisible();
+    //act: fill inputs 
+    await loginPage.fillLoginForm(invalidUsernameUser.username, invalidUsernameUser.password);
+    //act (click) + assert
+    await loginPage.clickSubmitButton(browserName);  
+    await expect(loginPage.failedLoginLocator).toBeVisible();     
 
   });
 
-  test('user with invalid username and valid password should fail to login', async ({ page }) => {
-
-    await test.step('Given user is on the login page', async () => {
+    test('user with both wrong username and password should fail to login', async ({ browserName }) => {
+      //arrange: verify current page is login page
       await expect(loginPage.submitButton).toBeVisible();
-    });
-
-    await test.step('When user fills username and password inputs with invalid username and valid password', async () => {
-      await loginPage.fillLoginForm(invalidUsernameUser.username, invalidUsernameUser.password);
-    });
-
-    await test.step('When user clicks on the submit button', async () => {
-      await loginPage.clickSubmitButton();  
-    });
-
-    await test.step('Then login fails and an error message is shown' , async () => {
-      await expect(loginPage.failedLoginLocator).toBeVisible();     
-    });
-
-  });
-
-  test('user with both wrong username and password should fail to login', async ({ page }) => {
-      await test.step('Given user is on the login page', async () => {
-       await expect(loginPage.submitButton).toBeVisible();
-    });
-
-    await test.step('When user fills username and password inputs with both wrong username and password', async () => {
+      //act: fill inputs 
       await loginPage.fillLoginForm(invalidCredentialsUser.username, invalidCredentialsUser.password);
-    });
-
-    await test.step('When user clicks on the submit button', async () => {
-      await loginPage.clickSubmitButton();  
-    });
-
-    await test.step('Then login fails and an error message is shown' , async () => {
+      //act (click) + assert
+      await loginPage.clickSubmitButton(browserName);
       await expect(loginPage.failedLoginLocator).toBeVisible();     
-    });
-  });
+    });  
+  
 
-  test('Valid user should be able to log out', async ({ page }) => {
+  test('Valid user should be able to log out', async ({ page, browserName }) => {
+    
     //arrange: go to login page and perform a succesful login
     await expect(loginPage.submitButton).toBeVisible();
     await loginPage.fillLoginForm(validUser.username, validUser.password);
-    await loginPage.clickSubmitButton(); 
+    await loginPage.clickSubmitButton(browserName); 
     await expect(page).toHaveURL(/inventory\.html$/i);
     await expect(loginPage.succesfulLoginLocator).toBeVisible(); 
-    //act: find open menu locator and click on it so that logout option appears
-    await loginPage.openTopLeftMenuLocator.click();
-    //act: find logout locator and click on it
-    await loginPage.logout();
+
+    //act: find home's top left menu and click on it so logout element appears
+    await loginPage.openHomeTopLeftMenu(browserName);
+    //act: get logout element and click on it
+    await loginPage.getLogoutElemAndClick(browserName);
     //assert: actual url matches (expected) login page URL
     await expect(page).toHaveURL(/https:\/\/(www\.)?saucedemo\.com/);
-  })
+  
+  });
   
 });

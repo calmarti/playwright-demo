@@ -5,19 +5,20 @@ export class LoginPage {
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
   readonly submitButton: Locator;
+  readonly homeTopLeftMenu: Locator;
   readonly succesfulLoginLocator: Locator;
   readonly failedLoginLocator: Locator;
-  readonly openTopLeftMenuLocator: Locator;
+  readonly logoutLocator: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    //TODO: add locator suffix where needed
     this.usernameInput = page.getByPlaceholder('Username');
     this.passwordInput = page.getByPlaceholder('Password');
     this.submitButton = page.locator('[data-test="login-button"]');
-    this.succesfulLoginLocator = page.getByText('Products');
+    this.homeTopLeftMenu = page.getByRole('button', { name: /Open Menu/i })
+    this.succesfulLoginLocator = page.getByTestId('title');
     this.failedLoginLocator = page.getByRole('heading', { name: "Epic sadface: Username and password do not match any user in this service"});
-    this.openTopLeftMenuLocator = page.getByRole('button', { name: /Open Menu/i })
+    this.logoutLocator = page.getByRole('link', { name: /Logout/i });
   }
 
   async navigateToLoginPage() {
@@ -34,11 +35,33 @@ export class LoginPage {
     await expect(this.passwordInput, 'password input should be filled').toHaveValue(password);
   }
 
-  async clickSubmitButton() {
-    await this.submitButton.click(); 
-  }
+  async clickSubmitButton(browserName: string) {
+      if (browserName === 'firefox') {
+    //await this.submitButton.click({ force: true });
+    await this.submitButton.focus();
+    await this.page.keyboard.press('Enter');
+  } else {
+    await this.submitButton.click();
+  }}
 
-  async logout(){
-    this.openTopLeftMenuLocator.click();
+  async openHomeTopLeftMenu(browserName:string){
+    if (browserName === 'firefox'){
+      await this.homeTopLeftMenu.focus();
+      await this.page.keyboard.press('Enter');
+    }
+    else{
+      await this.homeTopLeftMenu.click();
+    }
+
+  }
+  
+  async getLogoutElemAndClick(browserName:string){
+     if (browserName === 'firefox'){
+      await this.logoutLocator.focus();
+      await this.page.keyboard.press('Enter');
+    }
+    else{
+      await this.logoutLocator.click();
+    }
   }
 }
