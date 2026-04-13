@@ -108,7 +108,7 @@ test.describe('Login page test cases', () => {
     //act: find open menu locator and click on it so that logout option appears
     await loginPage.openTopLeftMenuLocator.click();
     //act: find logout locator and click on it
-    await page.getByRole('link', { name: /Logout/i }).click();
+    await loginPage.logout();
     //assert: actual url matches (expected) login page URL
     await expect(page).toHaveURL(/https:\/\/(www\.)?saucedemo\.com/);
   })

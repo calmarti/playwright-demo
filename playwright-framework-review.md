@@ -1,4 +1,4 @@
-# Playwright Framework Review — playwright-demo
+ # Playwright Framework Review — playwright-demo
 
 > **Proyecto:** playwright-demo (IvanQA)
 > **Fecha de revisión:** 2026-04-10
@@ -18,7 +18,7 @@
    - 3.3 [Tests](#33-tests)
    - 3.4 [Test Data](#34-test-data)
    - 3.5 [Setup / Autenticación](#35-setup--autenticación)
-   - 3.6 [CI/CD (GitHub Actions)](#36-cicd-github-actions)
+   - 3.6 [CI/CD (GitHub Actions)](#36-cicd-github-actions) 
    - 3.7 [TypeScript / Toolchain](#37-typescript--toolchain)
 4. [Bugs confirmados](#4-bugs-confirmados)
 5. [Fortalezas del framework](#5-fortalezas-del-framework)
