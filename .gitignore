@@ -10,3 +10,4 @@
 /playwright/.cache/
 /playwright/.auth/
 /setup/auth.json
+report.xml
