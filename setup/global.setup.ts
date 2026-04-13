@@ -8,8 +8,12 @@ const authJson = path.join(__dirname, 'auth.json');
 export default async function globalSetup(config: FullConfig) {
     const browser = await chromium.launch();
     const page = await browser.newPage();
-    const { baseURL } = config.projects[0].use;
 
+    //define a baseline project to get baseURL from it
+    const baselineProject = config.projects.find(project => project.name==='chromium');    
+    const baseURL = baselineProject?.use.baseURL || undefined;
+    if (baseURL === undefined) throw new Error ("Base URL is undefined!");
+    
     await page.goto(`${baseURL}/inventory.html`);
     await page.getByPlaceholder('Username').fill(validUser.username);
     await page.getByPlaceholder('Password').fill(validUser.password);
