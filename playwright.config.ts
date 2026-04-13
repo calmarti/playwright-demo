@@ -28,7 +28,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html', { open: 'never' }],
-    ['junit', { outputFile: 'report.xml'} ]],
+    ['junit', { outputFile: 'results.xml'} ]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
@@ -38,7 +38,7 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    headless: process.env.CI ? true : false,
+    headless: process.env.CI ? true : true,
     launchOptions: {   
       slowMo: process.env.CI ? undefined : 500,
     },
@@ -55,7 +55,7 @@ export default defineConfig({
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
-      workers: process.env.CI ? 1 : 1  //fix to firefox issue
+      workers: process.env.CI ? 1 : 1  //helps to fix firefox issue
     },
 
     {

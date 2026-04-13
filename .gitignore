@@ -11,3 +11,4 @@
 /playwright/.auth/
 /setup/auth.json
 report.xml
+results.xml
