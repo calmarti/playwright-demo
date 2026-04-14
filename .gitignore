@@ -10,5 +10,6 @@
 /playwright/.cache/
 /playwright/.auth/
 /setup/auth.json
+/junit-report/
 report.xml
 results.xml

@@ -54,5 +54,5 @@ jobs:
       if: ${{ failure() }}
       with:
         name: junit-report
-        path: results.xml
+        path: junit-report/
         retention-days: 15  
