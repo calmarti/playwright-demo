@@ -15,7 +15,7 @@ export class LoginPage {
     this.usernameInput = page.getByPlaceholder('Username');
     this.passwordInput = page.getByPlaceholder('Password');
     this.submitButton = page.locator('[data-test="login-button"]');
-    this.homeTopLeftMenu = page.getByRole('button', { name: /Open Menu/i })
+    this.homeTopLeftMenu = page.getByRole('button', { name: /Open Menu/i });
     this.succesfulLoginLocator = page.getByTestId('title');
     this.failedLoginLocator = page.getByTestId('error');
     this.logoutLocator = page.getByRole('link', { name: /Logout/i });

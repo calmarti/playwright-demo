@@ -8,7 +8,7 @@ const { validUser, invalidPasswordUser, invalidUsernameUser, invalidCredentialsU
 //this overrides storageState set in global.setup.ts
 test.use({ storageState: { cookies: [], origins: [] } });
 
-test.describe('Login page test cases', () => {
+test.describe('Login page test suite', () => {
 
   let loginPage: LoginPage;
 

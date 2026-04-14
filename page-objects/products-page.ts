@@ -3,6 +3,7 @@ import { By,  Item, Order } from '../types';
 
 export class ProductsPage {
     readonly page: Page;
+    //TODO: update name to productsTitleLocator
     readonly productsHeadingLocator: Locator;
     readonly itemContainerLocatorList: Locator;
     readonly itemNameLocatorList: Locator;
@@ -12,6 +13,7 @@ export class ProductsPage {
 
     constructor(page: Page){
         this.page = page;
+          //TODO: update name to productsTitleLocator and use getByTestId
         this.productsHeadingLocator = page.getByText('Products');
         this.itemContainerLocatorList = page.getByTestId('inventory-item');
         this.itemNameLocatorList = page.getByTestId('inventory-item-name');
@@ -59,6 +61,7 @@ export class ProductsPage {
         await removeButton.click();  
     }
     
+    //TODO: maybe move it to utils so cart.spec can reuse it
     getItemButton(item: Item, buttonName?: string): Locator {
         return this.itemContainerLocatorList
             .filter({ hasText: item.name, visible: true })

@@ -4,7 +4,7 @@ import { testItems } from '../test-data/items';
 
 const { testItem1, testItem2, testItem3 } = testItems;
 
-test.describe('Products page tests cases', () => {
+test.describe('Products page tests suite', () => {
 
     let productsPage: ProductsPage;
     
@@ -21,7 +21,7 @@ test.describe('Products page tests cases', () => {
         await productsPage.itemNameLocatorList.allTextContents(); 
         expectedSortedItemNamesList = expectedSortedItemNamesList.sort((a,b) => b.localeCompare(a, 'en'));
         //act: sort (DESC) by item names in UI 
-        const sortedItemNamesList = await productsPage.sortItemsBy('name','desc');
+        const sortedItemNamesList: string[] = await productsPage.sortItemsBy('name','desc');
         //assert: compare JS-sorted array (expected) vs. actual UI-sorted array
         expect(sortedItemNamesList).toEqual(expectedSortedItemNamesList);
     });
