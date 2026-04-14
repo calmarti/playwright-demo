@@ -1,11 +1,8 @@
 import { test, expect } from '@playwright/test';
-import path from 'node:path';
 import { ProductsPage } from '../page-objects/products-page';
 import { testItems } from '../test-data/items';
 
-const { testItem1, testItem2, testItem3 } = testItems
-
-const authJson = path.join(__dirname, '../setup/auth.json'); 
+const { testItem1, testItem2, testItem3 } = testItems;
 
 test.describe('Products page tests cases', () => {
 
@@ -18,10 +15,10 @@ test.describe('Products page tests cases', () => {
     });
     
 
-    test('Sort items  by name in descending order', async () => {
+    test('Sort items by name in descending order', async () => {
         //arrange: programatically sort (DESC) by name before UI sort (expected array)
         let expectedSortedItemNamesList: string[] = 
-        await productsPage.itemNameLocatorList.allTextContents() 
+        await productsPage.itemNameLocatorList.allTextContents(); 
         expectedSortedItemNamesList = expectedSortedItemNamesList.sort((a,b) => b.localeCompare(a, 'en'));
         //act: sort (DESC) by item names in UI 
         const sortedItemNamesList = await productsPage.sortItemsBy('name','desc');
@@ -32,7 +29,7 @@ test.describe('Products page tests cases', () => {
 
     test('Sort items by price in ascending order', async () => {
         //arrange: programatically sort (ASC) item names before UI sort (expected array) 
-        let expectedSortedItemPricesList: string[] = 
+        const expectedSortedItemPricesList: string[] = 
         await productsPage.itemPriceLocatorList.allTextContents();
         expectedSortedItemPricesList
         .sort((a,b)=> {
@@ -52,7 +49,7 @@ test.describe('Products page tests cases', () => {
        //assert: item details page has expected url   
        await expect(page)
        .toHaveURL(new RegExp(`inventory-item\\.html\\?id=${testItem1.id}`));    
-    })
+    });
     
 
     test('Add one item to cart and then remove it', async () => {

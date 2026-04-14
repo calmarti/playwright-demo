@@ -14,7 +14,7 @@ export class ProductsPage {
         this.page = page;
         this.productsHeadingLocator = page.getByText('Products');
         this.itemContainerLocatorList = page.getByTestId('inventory-item');
-        this.itemNameLocatorList = page.getByTestId('inventory-item-name')
+        this.itemNameLocatorList = page.getByTestId('inventory-item-name');
         this.itemPriceLocatorList = page.getByTestId('inventory-item-price');
         this.sortItemsLocator = page.getByTestId('product-sort-container');
         this.shoppingCartLocator = page.getByTestId('shopping-cart-link');
@@ -52,7 +52,7 @@ export class ProductsPage {
     async addItemToCart(item: Item){
         const addButton = this.getItemButton(item, 'Add to cart');
         await addButton.click();           
-    }
+    } 
     
     async removeFromCart(item: Item){
         const removeButton = this.getItemButton(item, 'Remove'); 

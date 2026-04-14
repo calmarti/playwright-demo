@@ -25,7 +25,7 @@ test.describe('Login page test cases', () => {
     await loginPage.fillLoginForm(validUser.username, validUser.password);
     //act (click) + assert 
     //await loginPage.clickSubmitButton();
-    await executeActionOnElem(browserName,loginPage.submitButton)
+    await executeActionOnElem(browserName,loginPage.submitButton);
     await expect(loginPage.succesfulLoginLocator).toBeVisible();
     await expect(page).toHaveURL(/inventory\.html$/i);
   });
@@ -37,7 +37,7 @@ test.describe('Login page test cases', () => {
     await loginPage.fillLoginForm(invalidPasswordUser.username, invalidPasswordUser.password);
     //act (click) + assert 
     //await loginPage.clickSubmitButton();
-    await executeActionOnElem(browserName,loginPage.submitButton)
+    await executeActionOnElem(browserName,loginPage.submitButton);
     await expect(loginPage.failedLoginLocator).toBeVisible();
   });
 
@@ -47,7 +47,7 @@ test.describe('Login page test cases', () => {
     //act: fill inputs 
     await loginPage.fillLoginForm(invalidUsernameUser.username, invalidUsernameUser.password);
     //act (click) + assert
-    await executeActionOnElem(browserName, loginPage.submitButton)
+    await executeActionOnElem(browserName, loginPage.submitButton);
     //await loginPage.clickSubmitButton();
     await expect(loginPage.failedLoginLocator).toBeVisible();
   });
@@ -58,7 +58,7 @@ test.describe('Login page test cases', () => {
     //act: fill inputs 
     await loginPage.fillLoginForm(invalidCredentialsUser.username, invalidCredentialsUser.password);
     //act (click) + assert
-    await executeActionOnElem(browserName,loginPage.submitButton)
+    await executeActionOnElem(browserName,loginPage.submitButton);
     //await loginPage.clickSubmitButton();
     await expect(loginPage.failedLoginLocator).toBeVisible();
   });
@@ -69,7 +69,7 @@ test.describe('Login page test cases', () => {
     //arrange: go to login page and perform a succesful login
     await expect(loginPage.submitButton).toBeVisible();
     await loginPage.fillLoginForm(validUser.username, validUser.password);
-    await executeActionOnElem(browserName,loginPage.submitButton)
+    await executeActionOnElem(browserName,loginPage.submitButton);
     await expect(page).toHaveURL(/inventory\.html$/i);
     await expect(loginPage.succesfulLoginLocator).toBeVisible();
 
