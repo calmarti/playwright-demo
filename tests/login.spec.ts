@@ -25,7 +25,7 @@ test.describe('Login page test cases', () => {
     await loginPage.fillLoginForm(validUser.username, validUser.password);
     //act (click) + assert 
     //await loginPage.clickSubmitButton();
-    await executeActionOnElem(browserName,loginPage.submitButton, loginPage.page)
+    await executeActionOnElem(browserName,loginPage.submitButton)
     await expect(loginPage.succesfulLoginLocator).toBeVisible();
     await expect(page).toHaveURL(/inventory\.html$/i);
   });
