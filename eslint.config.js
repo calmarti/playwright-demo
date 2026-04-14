@@ -12,6 +12,7 @@ export default [
   {
     rules: {
       'no-console': 'warn',
+      'semi': ['warn', 'always'],
     },
   },
 ];

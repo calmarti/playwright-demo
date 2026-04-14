@@ -15,4 +15,4 @@ export async function executeActionOnElem(browserName: string, elem: Locator){
         default:
             await elem.click();
     }
-}
+};
