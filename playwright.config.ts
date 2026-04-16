@@ -55,7 +55,7 @@ export default defineConfig({
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
-      workers: process.env.CI ? 1 : 1  //helps to fix firefox issue
+      workers: process.env.CI ? undefined : 1  //helps to fix firefox issue
     },
 
     {

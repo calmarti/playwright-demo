@@ -22,7 +22,7 @@ export class InventoryPage {
         this.sortItemsLocator = page.getByTestId('product-sort-container');
         this.shoppingCartLocator = page.getByTestId('shopping-cart-link');
         this.burguerMenu = page.getByRole('button', { name: /Open Menu/i });
-        this.logoutLocator = page.getByTestId('logout');
+        this.logoutLocator = page.getByTestId('logout-sidebar-link');
     }
 
     async navigateToProductsPage(){
