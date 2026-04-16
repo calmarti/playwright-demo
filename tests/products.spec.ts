@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { ProductsPage } from '../page-objects/products-page';
+import { ProductsPage } from '../page-objects/inventory-page';
 import { testItems } from '../test-data/items';
 
 const { testItem1, testItem2, testItem3 } = testItems;

@@ -1,7 +1,7 @@
-import { Locator } from "@playwright/test";
+/* import { Locator } from "@playwright/test";
 
 //this fixes firefox issue with 'click' action
-export async function executeActionOnElem(browserName: string, elem: Locator){
+export async function executeActionOnElem(browserName: string, elem: Locator) {
     switch (browserName) {
         case 'chromium':
             await elem.click();
@@ -16,3 +16,4 @@ export async function executeActionOnElem(browserName: string, elem: Locator){
             await elem.click();
     }
 };
+ */

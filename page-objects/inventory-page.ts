@@ -1,25 +1,28 @@
 import { Page, Locator } from '@playwright/test';
 import { By,  Item, Order } from '../types';
 
-export class ProductsPage {
+export class InventoryPage {
     readonly page: Page;
-    //TODO: update name to productsTitleLocator
-    readonly productsHeadingLocator: Locator;
+    readonly productsTitleLocator: Locator; 
     readonly itemContainerLocatorList: Locator;
     readonly itemNameLocatorList: Locator;
     readonly itemPriceLocatorList: Locator;
     readonly sortItemsLocator: Locator; 
-    readonly shoppingCartLocator: Locator;
+    readonly shoppingCartLocator: Locator; 
+    readonly burguerMenu: Locator;
+    readonly logoutLocator: Locator;
 
     constructor(page: Page){
         this.page = page;
-          //TODO: update name to productsTitleLocator and use getByTestId
-        this.productsHeadingLocator = page.getByText('Products');
+        //TODO: update locators to use getByTestId
+        this.productsTitleLocator = page.getByTestId('title'); 
         this.itemContainerLocatorList = page.getByTestId('inventory-item');
         this.itemNameLocatorList = page.getByTestId('inventory-item-name');
         this.itemPriceLocatorList = page.getByTestId('inventory-item-price');
         this.sortItemsLocator = page.getByTestId('product-sort-container');
         this.shoppingCartLocator = page.getByTestId('shopping-cart-link');
+        this.burguerMenu = page.getByRole('button', { name: /Open Menu/i });
+        this.logoutLocator = page.getByTestId('logout');
     }
 
     async navigateToProductsPage(){
@@ -72,5 +75,14 @@ export class ProductsPage {
         await this.shoppingCartLocator.click();
         await this.page.waitForURL(/cart\.html/); 
     }
+
+    async openBurguerMenu(){
+        this.burguerMenu.click
+    }
+
+    async logout(){
+        await this.logoutLocator.click();
+  }
+
 }; 
 
